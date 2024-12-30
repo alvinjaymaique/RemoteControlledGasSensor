@@ -2,7 +2,7 @@
 #include <SoftwareSerial.h>;
 #include <string.h>
 // #include <MQ2.h>
-
+#define ledPin A1
 
 // MQ2 Pin
 const int mq2Pin = A0;
@@ -40,6 +40,7 @@ void setup() {
   pinMode(txPin, OUTPUT);
   // Serial.begin(38400);
   // BTSerial.begin(38400); //AT Command Debug mode
+  pinMode(ledPin, OUTPUT);
 
   for(int i=2; i<9; i++){
     pinMode(i, OUTPUT);
@@ -54,6 +55,12 @@ void setup() {
 
   // Collect samples for the warm-up period
   while (millis() - startTime < warmupTime) {
+    // Flicker LED indicator of initializing the baseline reading
+    digitalWrite(ledPin, HIGH);
+    delay(100);
+    digitalWrite(ledPin, LOW);
+    delay(100);
+    
     baseline += analogRead(mq2Pin);
     sampleCount++;
     delay(sampleInterval);
@@ -69,7 +76,9 @@ void setup() {
   Serial.print("Gas Threshold: ");
   Serial.println(gasThreshold);
 
+  digitalWrite(ledPin, LOW);
   delay(1000);
+  digitalWrite(ledPin, HIGH);
 }
 
 String receivedData = "";

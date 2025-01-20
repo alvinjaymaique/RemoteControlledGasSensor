@@ -1,0 +1,12 @@
+MQ2 sensor.
+arduino nano.
+HC-05 (bluetooth module).
+buzzer.
+tb6612fng (motor driver).
+N20 mini dc motor x2.
+N20 wheels x2.
+Li-ion 18650 3.7V (battery) x3.
+Battery Holder.
+LM2596s DC-DC Converter (step-down voltage).
+Power switch.
+jumper wires.
